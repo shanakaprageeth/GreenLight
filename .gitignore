@@ -119,4 +119,6 @@ output/
 create_git_repo_windows.bat
 create_git_repo.sh
 
+.vscode/   # VSCode settings
+.venv/  # Virtual environment directory
 # Other files

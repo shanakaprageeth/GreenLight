@@ -1,4 +1,4 @@
-\bumpversion
+bumpversion
 flake8
 jupyter
 jupytext
