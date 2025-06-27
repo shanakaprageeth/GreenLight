@@ -123,3 +123,4 @@ create_git_repo.sh
 .venv
 # Other files
 
+plots

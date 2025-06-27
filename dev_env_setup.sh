@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 echo "Setting up developer environment..."
 
@@ -40,3 +40,6 @@ echo "Developer environment is ready."
 echo "To activate, run: source .venv/bin/activate"
 # Install pre-commit hooks
 pre-commit install
+source .venv/bin/activate
+python3 scripts/greenlight_example.py
+echo "Example script executed. You can now start developing with Greenlight."
