@@ -57,7 +57,6 @@ include = ["greenlight*"]
 [tool.setuptools.package-data]
 "greenlight" = [
     "models/**/definition/**",
-    "models/**/test_data/**",
     "models/katzin_2021/readme.txt",
     "models/van_henten_2003/readme.txt"
 ]
