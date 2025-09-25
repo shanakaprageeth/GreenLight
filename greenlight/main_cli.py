@@ -129,7 +129,8 @@ def main():
         print("\nExample usage:")
         print(
             "python -m greenlight.main_cli "
-            "--sim_length 3 "
+            "--input_data_file /workspaces/GreenLight/greenlight/models/katzin_2021/input_data/test_data/Bleiswijk_from_20091020.csv "
+            "--sim_length 3"
             "--start_date 2009-10-20 "
             "--base_path /workspaces/GreenLight/greenlight/models "
             "--model_file /workspaces/GreenLight/greenlight/models/katzin_2021/definition/main_katzin_2021.json "

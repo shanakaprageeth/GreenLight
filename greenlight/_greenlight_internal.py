@@ -86,8 +86,10 @@ class GreenLightInternal:
                 e.g., {"options": {"t_end": n_days * 24 * 3600}}
             dicts, JSONs, etc. can also contain references to other files, see docs/modifying_and_combining_models.md
             If the default value is given (""), the input_prompt used will be the location of the Katzin 2021 model
-            in greenlight's package resources:
-                [str(PurePath(resources.files("greenlight") / r"models/katzin_2021/definition/main_katzin_2021.json"))]
+            in greenlight's package resources, and the location of the weather dataset used for testing:
+                [str(PurePath(resources.files("greenlight") / r"models/katzin_2021/definition/main_katzin_2021.json")),
+                    str(PurePath(resources.files(
+                    "greenlight") / r"models/katzin_2021/input_data/test_data/Bleiswijk_from_20091020.csv"))]
         :param output_path: Location of where the output file should be saved to.
                             If the default value is given (""), the file will be placed in
                             PurePath(Path.cwd() / r"output/greenlight_output_<current_time>.csv")
@@ -99,7 +101,13 @@ class GreenLightInternal:
             base_path = str(PurePath(resources.files("greenlight") / "models"))
         if not input_prompt:  # Default to the Katzin 2021 in the package's models directory
             input_prompt = [
-                str(PurePath(resources.files("greenlight") / r"models/katzin_2021/definition/main_katzin_2021.json"))
+                str(PurePath(resources.files("greenlight") / r"models/katzin_2021/definition/main_katzin_2021.json")),
+                str(
+                    PurePath(
+                        resources.files("greenlight")
+                        / r"models/katzin_2021/input_data/test_data/Bleiswijk_from_20091020.csv"
+                    )
+                ),
             ]
         if not output_path:  # Default to cwd/output
             output_dir = Path.cwd() / "output"
