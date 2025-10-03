@@ -71,7 +71,9 @@ mods = [{"thetaLampMax": {"definition": "120"}}]  # Change the maximum lamp inte
 """ Add weather data """
 # Convert original file into formatted file - with the required start and end date
 
-# Try to use weather data if available, otherwise run without external weather data
+# Weather data to use in case formatting the input weather data doesn't work
+fallback_directory = os.path.abspath(os.path.join(base_path, os.path.join("katzin_2021", "input_data", "test_data")))
+fallback_file = "Bleiswijk_from_20091020.csv"
 try:
     formatted_file_name = greenlight.convert_energy_plus(
         os.path.join(original_file_directory, original_energyPlus_csv),
@@ -79,22 +81,32 @@ try:
         t_out_start=start_date,
         t_out_end=start_date + dt.timedelta(days=simulation_length),
     )
-    # Include the generated file in the simulation
-    mods.append(os.path.join(formatted_file_directory, formatted_file_name))
 except FileNotFoundError:
     warnings.warn(
         "Couldn't find file:\n"
         f"{os.path.abspath(os.path.join(original_file_directory, original_energyPlus_csv))}\n"
-        "Running simulation without external weather data"
+        "Using built-in weather data instead"
     )
+
+    # Use built-in weather data
+    formatted_file_directory = fallback_directory
+    formatted_file_name = fallback_file
 except Exception:
     warnings.warn(
         "Failed to convert EnergyPlus file:\n"
         f"{os.path.abspath(os.path.join(original_file_directory, original_energyPlus_csv))}\n"
         "To formatted file:\n"
         f"{os.path.abspath(os.path.join(formatted_file_directory, formatted_csv_name))}\n"
-        "Running simulation without external weather data"
+        "Using built-in weather data instead"
     )
+
+    # Use built-in weather data
+    formatted_file_directory = fallback_directory
+    formatted_file_name = fallback_file
+
+
+# Include the generated file in the simulation
+mods.append(os.path.join(formatted_file_directory, formatted_file_name))
 
 
 """Run the model"""

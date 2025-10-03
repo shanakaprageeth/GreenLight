@@ -5,7 +5,8 @@ authors = [{name="David Katzin", email="david.katzin@wur.nl"}]
 description = "A platform for creating, modifying, and combining dynamic models, with a focus on horticultural greenhouses and crops"
 readme = "README.md"
 requires-python = ">3.9"
-license = {text = "BSD-3-Clause-Clear"}
+license = "BSD-3-Clause-Clear"
+license-files = ["LICEN[CS]E*"]
 keywords = ["greenlight", "greenhouse", "crop", "modelling"]
 dependencies = [
     "numpy~=1.26.4",
@@ -56,6 +57,7 @@ include = ["greenlight*"]
 [tool.setuptools.package-data]
 "greenlight" = [
     "models/**/definition/**",
+    "models/**/test_data/**",
     "models/katzin_2021/readme.txt",
     "models/van_henten_2003/readme.txt"
 ]
